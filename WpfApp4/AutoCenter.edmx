@@ -1,0 +1,838 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище AutoCenterModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Auto">
+          <Key>
+            <PropertyRef Name="Auto_id" />
+          </Key>
+          <Property Name="Auto_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Model_id" Type="int" Nullable="false" />
+          <Property Name="Color" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Vendor_id" Type="int" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="11" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AutoService">
+          <Key>
+            <PropertyRef Name="Service_id" />
+          </Key>
+          <Property Name="Service_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Model_id" Type="int" Nullable="false" />
+          <Property Name="Client_id" Type="int" Nullable="false" />
+          <Property Name="Datetime" Type="datetime" Nullable="false" />
+          <Property Name="Title" Type="text" />
+        </EntityType>
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="Client_id" />
+          </Key>
+          <Property Name="Client_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Patronymic" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="11" Nullable="false" />
+          <Property Name="Pasport" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="BirthDate" Type="date" />
+        </EntityType>
+        <EntityType Name="Contract">
+          <Key>
+            <PropertyRef Name="Contract_id" />
+          </Key>
+          <Property Name="Contract_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Client_id" Type="int" Nullable="false" />
+          <Property Name="Employee_id" Type="int" Nullable="false" />
+          <Property Name="Auto_id" Type="int" Nullable="false" />
+          <Property Name="Datetime" Type="datetime" Nullable="false" />
+          <Property Name="Title" Type="text" />
+          <Property Name="Price" Type="decimal" Precision="11" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="Employee_id" />
+          </Key>
+          <Property Name="Employee_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Patronymic" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="11" Nullable="false" />
+          <Property Name="BirthDate" Type="date" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="JobTitle" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EngineType">
+          <Key>
+            <PropertyRef Name="EngineType_id" />
+          </Key>
+          <Property Name="EngineType_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="JobTitle">
+          <Key>
+            <PropertyRef Name="JobTitle_id" />
+          </Key>
+          <Property Name="JobTitle_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Model">
+          <Key>
+            <PropertyRef Name="Model_id" />
+          </Key>
+          <Property Name="Model_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Mark" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Width" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Height" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Length" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="EngineType_id" Type="int" Nullable="false" />
+          <Property Name="Complectation" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="HorsePower" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="EngineVolume" Type="nvarchar" MaxLength="7" Nullable="false" />
+          <Property Name="Places" Type="nvarchar" MaxLength="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TestDrive">
+          <Key>
+            <PropertyRef Name="TestDrive_id" />
+          </Key>
+          <Property Name="TestDrive_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Employee_id" Type="int" Nullable="false" />
+          <Property Name="Client_id" Type="int" Nullable="false" />
+          <Property Name="Auto_id" Type="int" Nullable="false" />
+          <Property Name="Datetime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vendor">
+          <Key>
+            <PropertyRef Name="Vendor_id" />
+          </Key>
+          <Property Name="Vendor_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="11" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Auto_Model">
+          <End Role="Model" Type="Self.Model" Multiplicity="1" />
+          <End Role="Auto" Type="Self.Auto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Model">
+              <PropertyRef Name="Model_id" />
+            </Principal>
+            <Dependent Role="Auto">
+              <PropertyRef Name="Model_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Auto_Vendor">
+          <End Role="Vendor" Type="Self.Vendor" Multiplicity="1" />
+          <End Role="Auto" Type="Self.Auto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vendor">
+              <PropertyRef Name="Vendor_id" />
+            </Principal>
+            <Dependent Role="Auto">
+              <PropertyRef Name="Vendor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AutoService_Clients">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
+          <End Role="AutoService" Type="Self.AutoService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="Client_id" />
+            </Principal>
+            <Dependent Role="AutoService">
+              <PropertyRef Name="Client_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AutoService_Model">
+          <End Role="Model" Type="Self.Model" Multiplicity="1" />
+          <End Role="AutoService" Type="Self.AutoService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Model">
+              <PropertyRef Name="Model_id" />
+            </Principal>
+            <Dependent Role="AutoService">
+              <PropertyRef Name="Model_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contract_Auto">
+          <End Role="Auto" Type="Self.Auto" Multiplicity="1" />
+          <End Role="Contract" Type="Self.Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Auto">
+              <PropertyRef Name="Auto_id" />
+            </Principal>
+            <Dependent Role="Contract">
+              <PropertyRef Name="Auto_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contract_Clients">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
+          <End Role="Contract" Type="Self.Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="Client_id" />
+            </Principal>
+            <Dependent Role="Contract">
+              <PropertyRef Name="Client_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contract_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+          <End Role="Contract" Type="Self.Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Employee_id" />
+            </Principal>
+            <Dependent Role="Contract">
+              <PropertyRef Name="Employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employees_JobTitle">
+          <End Role="JobTitle" Type="Self.JobTitle" Multiplicity="1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobTitle">
+              <PropertyRef Name="JobTitle_id" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="JobTitle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Model_EngineType">
+          <End Role="EngineType" Type="Self.EngineType" Multiplicity="1" />
+          <End Role="Model" Type="Self.Model" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EngineType">
+              <PropertyRef Name="EngineType_id" />
+            </Principal>
+            <Dependent Role="Model">
+              <PropertyRef Name="EngineType_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestDrive_Auto">
+          <End Role="Auto" Type="Self.Auto" Multiplicity="1" />
+          <End Role="TestDrive" Type="Self.TestDrive" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Auto">
+              <PropertyRef Name="Auto_id" />
+            </Principal>
+            <Dependent Role="TestDrive">
+              <PropertyRef Name="Auto_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestDrive_Clients">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
+          <End Role="TestDrive" Type="Self.TestDrive" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="Client_id" />
+            </Principal>
+            <Dependent Role="TestDrive">
+              <PropertyRef Name="Client_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestDrive_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+          <End Role="TestDrive" Type="Self.TestDrive" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Employee_id" />
+            </Principal>
+            <Dependent Role="TestDrive">
+              <PropertyRef Name="Employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище AutoCenterModelContainer">
+          <EntitySet Name="Auto" EntityType="Self.Auto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AutoService" EntityType="Self.AutoService" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contract" EntityType="Self.Contract" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EngineType" EntityType="Self.EngineType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JobTitle" EntityType="Self.JobTitle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Model" EntityType="Self.Model" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TestDrive" EntityType="Self.TestDrive" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vendor" EntityType="Self.Vendor" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Auto_Model" Association="Self.FK_Auto_Model">
+            <End Role="Model" EntitySet="Model" />
+            <End Role="Auto" EntitySet="Auto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Auto_Vendor" Association="Self.FK_Auto_Vendor">
+            <End Role="Vendor" EntitySet="Vendor" />
+            <End Role="Auto" EntitySet="Auto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AutoService_Clients" Association="Self.FK_AutoService_Clients">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="AutoService" EntitySet="AutoService" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AutoService_Model" Association="Self.FK_AutoService_Model">
+            <End Role="Model" EntitySet="Model" />
+            <End Role="AutoService" EntitySet="AutoService" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contract_Auto" Association="Self.FK_Contract_Auto">
+            <End Role="Auto" EntitySet="Auto" />
+            <End Role="Contract" EntitySet="Contract" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contract_Clients" Association="Self.FK_Contract_Clients">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Contract" EntitySet="Contract" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contract_Employees" Association="Self.FK_Contract_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Contract" EntitySet="Contract" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employees_JobTitle" Association="Self.FK_Employees_JobTitle">
+            <End Role="JobTitle" EntitySet="JobTitle" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Model_EngineType" Association="Self.FK_Model_EngineType">
+            <End Role="EngineType" EntitySet="EngineType" />
+            <End Role="Model" EntitySet="Model" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestDrive_Auto" Association="Self.FK_TestDrive_Auto">
+            <End Role="Auto" EntitySet="Auto" />
+            <End Role="TestDrive" EntitySet="TestDrive" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestDrive_Clients" Association="Self.FK_TestDrive_Clients">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="TestDrive" EntitySet="TestDrive" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestDrive_Employees" Association="Self.FK_TestDrive_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="TestDrive" EntitySet="TestDrive" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AutoCenterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Auto">
+          <Key>
+            <PropertyRef Name="Auto_id" />
+          </Key>
+          <Property Name="Auto_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Model_id" Type="Int32" Nullable="false" />
+          <Property Name="Color" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Vendor_id" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="11" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Model" Relationship="Self.FK_Auto_Model" FromRole="Auto" ToRole="Model" />
+          <NavigationProperty Name="Vendor" Relationship="Self.FK_Auto_Vendor" FromRole="Auto" ToRole="Vendor" />
+          <NavigationProperty Name="Contract" Relationship="Self.FK_Contract_Auto" FromRole="Auto" ToRole="Contract" />
+          <NavigationProperty Name="TestDrive" Relationship="Self.FK_TestDrive_Auto" FromRole="Auto" ToRole="TestDrive" />
+        </EntityType>
+        <EntityType Name="AutoService">
+          <Key>
+            <PropertyRef Name="Service_id" />
+          </Key>
+          <Property Name="Service_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Model_id" Type="Int32" Nullable="false" />
+          <Property Name="Client_id" Type="Int32" Nullable="false" />
+          <Property Name="Datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Clients" Relationship="Self.FK_AutoService_Clients" FromRole="AutoService" ToRole="Clients" />
+          <NavigationProperty Name="Model" Relationship="Self.FK_AutoService_Model" FromRole="AutoService" ToRole="Model" />
+        </EntityType>
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="Client_id" />
+          </Key>
+          <Property Name="Client_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Pasport" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BirthDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="AutoService" Relationship="Self.FK_AutoService_Clients" FromRole="Clients" ToRole="AutoService" />
+          <NavigationProperty Name="Contract" Relationship="Self.FK_Contract_Clients" FromRole="Clients" ToRole="Contract" />
+          <NavigationProperty Name="TestDrive" Relationship="Self.FK_TestDrive_Clients" FromRole="Clients" ToRole="TestDrive" />
+        </EntityType>
+        <EntityType Name="Contract">
+          <Key>
+            <PropertyRef Name="Contract_id" />
+          </Key>
+          <Property Name="Contract_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Client_id" Type="Int32" Nullable="false" />
+          <Property Name="Employee_id" Type="Int32" Nullable="false" />
+          <Property Name="Auto_id" Type="Int32" Nullable="false" />
+          <Property Name="Datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Decimal" Precision="11" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Auto" Relationship="Self.FK_Contract_Auto" FromRole="Contract" ToRole="Auto" />
+          <NavigationProperty Name="Clients" Relationship="Self.FK_Contract_Clients" FromRole="Contract" ToRole="Clients" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_Contract_Employees" FromRole="Contract" ToRole="Employees" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="Employee_id" />
+          </Key>
+          <Property Name="Employee_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="JobTitle" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Contract" Relationship="Self.FK_Contract_Employees" FromRole="Employees" ToRole="Contract" />
+          <NavigationProperty Name="JobTitle1" Relationship="Self.FK_Employees_JobTitle" FromRole="Employees" ToRole="JobTitle" />
+          <NavigationProperty Name="TestDrive" Relationship="Self.FK_TestDrive_Employees" FromRole="Employees" ToRole="TestDrive" />
+        </EntityType>
+        <EntityType Name="EngineType">
+          <Key>
+            <PropertyRef Name="EngineType_id" />
+          </Key>
+          <Property Name="EngineType_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Model" Relationship="Self.FK_Model_EngineType" FromRole="EngineType" ToRole="Model" />
+        </EntityType>
+        <EntityType Name="JobTitle">
+          <Key>
+            <PropertyRef Name="JobTitle_id" />
+          </Key>
+          <Property Name="JobTitle_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_Employees_JobTitle" FromRole="JobTitle" ToRole="Employees" />
+        </EntityType>
+        <EntityType Name="Model">
+          <Key>
+            <PropertyRef Name="Model_id" />
+          </Key>
+          <Property Name="Model_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Mark" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Width" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Height" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Length" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EngineType_id" Type="Int32" Nullable="false" />
+          <Property Name="Complectation" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HorsePower" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EngineVolume" Type="String" MaxLength="7" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Places" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Auto" Relationship="Self.FK_Auto_Model" FromRole="Model" ToRole="Auto" />
+          <NavigationProperty Name="AutoService" Relationship="Self.FK_AutoService_Model" FromRole="Model" ToRole="AutoService" />
+          <NavigationProperty Name="EngineType" Relationship="Self.FK_Model_EngineType" FromRole="Model" ToRole="EngineType" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TestDrive">
+          <Key>
+            <PropertyRef Name="TestDrive_id" />
+          </Key>
+          <Property Name="TestDrive_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Employee_id" Type="Int32" Nullable="false" />
+          <Property Name="Client_id" Type="Int32" Nullable="false" />
+          <Property Name="Auto_id" Type="Int32" Nullable="false" />
+          <Property Name="Datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Auto" Relationship="Self.FK_TestDrive_Auto" FromRole="TestDrive" ToRole="Auto" />
+          <NavigationProperty Name="Clients" Relationship="Self.FK_TestDrive_Clients" FromRole="TestDrive" ToRole="Clients" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_TestDrive_Employees" FromRole="TestDrive" ToRole="Employees" />
+        </EntityType>
+        <EntityType Name="Vendor">
+          <Key>
+            <PropertyRef Name="Vendor_id" />
+          </Key>
+          <Property Name="Vendor_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Auto" Relationship="Self.FK_Auto_Vendor" FromRole="Vendor" ToRole="Auto" />
+        </EntityType>
+        <Association Name="FK_Auto_Model">
+          <End Role="Model" Type="Self.Model" Multiplicity="1" />
+          <End Role="Auto" Type="Self.Auto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Model">
+              <PropertyRef Name="Model_id" />
+            </Principal>
+            <Dependent Role="Auto">
+              <PropertyRef Name="Model_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Auto_Vendor">
+          <End Role="Vendor" Type="Self.Vendor" Multiplicity="1" />
+          <End Role="Auto" Type="Self.Auto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vendor">
+              <PropertyRef Name="Vendor_id" />
+            </Principal>
+            <Dependent Role="Auto">
+              <PropertyRef Name="Vendor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contract_Auto">
+          <End Role="Auto" Type="Self.Auto" Multiplicity="1" />
+          <End Role="Contract" Type="Self.Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Auto">
+              <PropertyRef Name="Auto_id" />
+            </Principal>
+            <Dependent Role="Contract">
+              <PropertyRef Name="Auto_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestDrive_Auto">
+          <End Role="Auto" Type="Self.Auto" Multiplicity="1" />
+          <End Role="TestDrive" Type="Self.TestDrive" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Auto">
+              <PropertyRef Name="Auto_id" />
+            </Principal>
+            <Dependent Role="TestDrive">
+              <PropertyRef Name="Auto_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AutoService_Clients">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
+          <End Role="AutoService" Type="Self.AutoService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="Client_id" />
+            </Principal>
+            <Dependent Role="AutoService">
+              <PropertyRef Name="Client_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AutoService_Model">
+          <End Role="Model" Type="Self.Model" Multiplicity="1" />
+          <End Role="AutoService" Type="Self.AutoService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Model">
+              <PropertyRef Name="Model_id" />
+            </Principal>
+            <Dependent Role="AutoService">
+              <PropertyRef Name="Model_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contract_Clients">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
+          <End Role="Contract" Type="Self.Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="Client_id" />
+            </Principal>
+            <Dependent Role="Contract">
+              <PropertyRef Name="Client_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestDrive_Clients">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
+          <End Role="TestDrive" Type="Self.TestDrive" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="Client_id" />
+            </Principal>
+            <Dependent Role="TestDrive">
+              <PropertyRef Name="Client_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contract_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+          <End Role="Contract" Type="Self.Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Employee_id" />
+            </Principal>
+            <Dependent Role="Contract">
+              <PropertyRef Name="Employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employees_JobTitle">
+          <End Role="JobTitle" Type="Self.JobTitle" Multiplicity="1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobTitle">
+              <PropertyRef Name="JobTitle_id" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="JobTitle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestDrive_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+          <End Role="TestDrive" Type="Self.TestDrive" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Employee_id" />
+            </Principal>
+            <Dependent Role="TestDrive">
+              <PropertyRef Name="Employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Model_EngineType">
+          <End Role="EngineType" Type="Self.EngineType" Multiplicity="1" />
+          <End Role="Model" Type="Self.Model" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EngineType">
+              <PropertyRef Name="EngineType_id" />
+            </Principal>
+            <Dependent Role="Model">
+              <PropertyRef Name="EngineType_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AutoCenterEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Auto" EntityType="Self.Auto" />
+          <EntitySet Name="AutoService" EntityType="Self.AutoService" />
+          <EntitySet Name="Clients" EntityType="Self.Clients" />
+          <EntitySet Name="Contract" EntityType="Self.Contract" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" />
+          <EntitySet Name="EngineType" EntityType="Self.EngineType" />
+          <EntitySet Name="JobTitle" EntityType="Self.JobTitle" />
+          <EntitySet Name="Model" EntityType="Self.Model" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TestDrive" EntityType="Self.TestDrive" />
+          <EntitySet Name="Vendor" EntityType="Self.Vendor" />
+          <AssociationSet Name="FK_Auto_Model" Association="Self.FK_Auto_Model">
+            <End Role="Model" EntitySet="Model" />
+            <End Role="Auto" EntitySet="Auto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Auto_Vendor" Association="Self.FK_Auto_Vendor">
+            <End Role="Vendor" EntitySet="Vendor" />
+            <End Role="Auto" EntitySet="Auto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contract_Auto" Association="Self.FK_Contract_Auto">
+            <End Role="Auto" EntitySet="Auto" />
+            <End Role="Contract" EntitySet="Contract" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestDrive_Auto" Association="Self.FK_TestDrive_Auto">
+            <End Role="Auto" EntitySet="Auto" />
+            <End Role="TestDrive" EntitySet="TestDrive" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AutoService_Clients" Association="Self.FK_AutoService_Clients">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="AutoService" EntitySet="AutoService" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AutoService_Model" Association="Self.FK_AutoService_Model">
+            <End Role="Model" EntitySet="Model" />
+            <End Role="AutoService" EntitySet="AutoService" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contract_Clients" Association="Self.FK_Contract_Clients">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Contract" EntitySet="Contract" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestDrive_Clients" Association="Self.FK_TestDrive_Clients">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="TestDrive" EntitySet="TestDrive" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contract_Employees" Association="Self.FK_Contract_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Contract" EntitySet="Contract" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employees_JobTitle" Association="Self.FK_Employees_JobTitle">
+            <End Role="JobTitle" EntitySet="JobTitle" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestDrive_Employees" Association="Self.FK_TestDrive_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="TestDrive" EntitySet="TestDrive" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Model_EngineType" Association="Self.FK_Model_EngineType">
+            <End Role="EngineType" EntitySet="EngineType" />
+            <End Role="Model" EntitySet="Model" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище AutoCenterModelContainer" CdmEntityContainer="AutoCenterEntities1">
+          <EntitySetMapping Name="Auto">
+            <EntityTypeMapping TypeName="AutoCenterModel.Auto">
+              <MappingFragment StoreEntitySet="Auto">
+                <ScalarProperty Name="Auto_id" ColumnName="Auto_id" />
+                <ScalarProperty Name="Model_id" ColumnName="Model_id" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Vendor_id" ColumnName="Vendor_id" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AutoService">
+            <EntityTypeMapping TypeName="AutoCenterModel.AutoService">
+              <MappingFragment StoreEntitySet="AutoService">
+                <ScalarProperty Name="Service_id" ColumnName="Service_id" />
+                <ScalarProperty Name="Model_id" ColumnName="Model_id" />
+                <ScalarProperty Name="Client_id" ColumnName="Client_id" />
+                <ScalarProperty Name="Datetime" ColumnName="Datetime" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="AutoCenterModel.Clients">
+              <MappingFragment StoreEntitySet="Clients">
+                <ScalarProperty Name="Client_id" ColumnName="Client_id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Pasport" ColumnName="Pasport" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contract">
+            <EntityTypeMapping TypeName="AutoCenterModel.Contract">
+              <MappingFragment StoreEntitySet="Contract">
+                <ScalarProperty Name="Contract_id" ColumnName="Contract_id" />
+                <ScalarProperty Name="Client_id" ColumnName="Client_id" />
+                <ScalarProperty Name="Employee_id" ColumnName="Employee_id" />
+                <ScalarProperty Name="Auto_id" ColumnName="Auto_id" />
+                <ScalarProperty Name="Datetime" ColumnName="Datetime" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="AutoCenterModel.Employees">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="Employee_id" ColumnName="Employee_id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EngineType">
+            <EntityTypeMapping TypeName="AutoCenterModel.EngineType">
+              <MappingFragment StoreEntitySet="EngineType">
+                <ScalarProperty Name="EngineType_id" ColumnName="EngineType_id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JobTitle">
+            <EntityTypeMapping TypeName="AutoCenterModel.JobTitle">
+              <MappingFragment StoreEntitySet="JobTitle">
+                <ScalarProperty Name="JobTitle_id" ColumnName="JobTitle_id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Model">
+            <EntityTypeMapping TypeName="AutoCenterModel.Model">
+              <MappingFragment StoreEntitySet="Model">
+                <ScalarProperty Name="Model_id" ColumnName="Model_id" />
+                <ScalarProperty Name="Mark" ColumnName="Mark" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="EngineType_id" ColumnName="EngineType_id" />
+                <ScalarProperty Name="Complectation" ColumnName="Complectation" />
+                <ScalarProperty Name="HorsePower" ColumnName="HorsePower" />
+                <ScalarProperty Name="EngineVolume" ColumnName="EngineVolume" />
+                <ScalarProperty Name="Places" ColumnName="Places" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="AutoCenterModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TestDrive">
+            <EntityTypeMapping TypeName="AutoCenterModel.TestDrive">
+              <MappingFragment StoreEntitySet="TestDrive">
+                <ScalarProperty Name="TestDrive_id" ColumnName="TestDrive_id" />
+                <ScalarProperty Name="Employee_id" ColumnName="Employee_id" />
+                <ScalarProperty Name="Client_id" ColumnName="Client_id" />
+                <ScalarProperty Name="Auto_id" ColumnName="Auto_id" />
+                <ScalarProperty Name="Datetime" ColumnName="Datetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vendor">
+            <EntityTypeMapping TypeName="AutoCenterModel.Vendor">
+              <MappingFragment StoreEntitySet="Vendor">
+                <ScalarProperty Name="Vendor_id" ColumnName="Vendor_id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
